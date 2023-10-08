@@ -1,6 +1,11 @@
 import React from 'react';
-import style from "./ProductCart.module.scss";
 import { Link } from 'react-router-dom';
+
+//dispatch
+import { increase ,decrease ,removeItem } from '../../redux/cart/actionCart';
+
+//Style
+import style from "./ProductCart.module.scss";
 
 //SVG
 import trashSvg from "../../assets/trash.svg";
@@ -27,9 +32,9 @@ const ProductCart = ({ productData, dispatch }) => {
             </div>
 
             <div className={style.buttonCart}>
-                {quantity >= 1 && <button onClick={() => dispatch({ type: 'INCREASE', payload: productData })} > + </button>}
-                {quantity === 1 && <button onClick={() => dispatch({ type: 'REMOVE_ITEM', payload: productData })} > <img src={ trashSvg } alt="trash" /> </button>}
-                {quantity > 1 && <button onClick={() => dispatch({ type: 'DECREASE', payload: productData })} > - </button>}
+                {quantity >= 1 && <button onClick={() => dispatch( increase( productData ) )} > + </button>}
+                {quantity === 1 && <button onClick={() => dispatch( removeItem( productData ) )} > <img src={ trashSvg } alt="trash" /> </button>}
+                {quantity > 1 && <button onClick={() => dispatch( decrease( productData ) )} > - </button>}
 
             </div>
         </div >

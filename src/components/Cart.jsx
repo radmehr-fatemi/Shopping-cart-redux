@@ -1,16 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import style from "./Cart.module.scss";
+import { useSelector ,useDispatch } from 'react-redux';
 
-//Context
-import { CartContext } from '../context/CartContextProvider';
+//Style
+import style from "./Cart.module.scss";
 
 //Component
 import ProductCart from './shared/ProductCart';
 
 const Cart = () => {
 
-    const { state, dispatch } = useContext(CartContext);
+    const state = useSelector( state => state.stateCart );
+    const dispatch = useDispatch();
 
     return (
         <div className={style.cart}>
@@ -18,7 +19,7 @@ const Cart = () => {
             <div className={style.checkoutCart}>
                 {
                     !state.selectedItem.length && <div className={style.checkoutCartTrue}>
-                        <h1> Youre Shopping cart is empty </h1>
+                        <h1> You're Shopping cart is empty </h1>
                         <Link to='/store' > Go to shopping </Link>
                     </div>
 

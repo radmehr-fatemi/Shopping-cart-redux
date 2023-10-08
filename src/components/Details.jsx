@@ -2,15 +2,15 @@ import React ,{ useContext } from 'react';
 import { useParams } from "react-router-dom";
 import style from "./Details.module.scss";
 import { Link } from 'react-router-dom';
+import { useSelector ,useDispatch } from "react-redux";
 
-//Context
-import { ProductContext } from '../context/ProductContextProvider';
 
 
 const Details = () => {
 
+    const products = useSelector( state => state.stateProducts.products );
     const id = useParams().id;
-    const { title ,image ,price ,category ,description } = useContext(ProductContext)[ id - 1 ];
+    const { title ,image ,price ,category ,description } = products[ id - 1 ];
     
     return (
         <div className={style.details}>

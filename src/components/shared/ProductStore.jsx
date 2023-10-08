@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import style from "./ProductStore.module.scss";
 import { Link } from "react-router-dom";
+import { useSelector , useDispatch } from "react-redux";
 
 //SVG
 import trashSVG from '../../assets/trash.svg';
@@ -9,13 +10,14 @@ import trashSVG from '../../assets/trash.svg';
 import { findQuantity, shorter, shorterLetters } from '../../helper/function';
 import { isItThere } from '../../helper/function';
 
-//Context
-import { CartContext } from '../../context/CartContextProvider';
+//dispatch
+import { increase ,addItem ,removeItem ,decrease } from '../../redux/cart/actionCart';
 
 const ProductStore = ({ productData }) => {
 
     const { image, title, price, category, description, id } = productData;
-    const { state, dispatch } = useContext(CartContext);
+    const state = useSelector( state => state.stateCart );
+    const dispatch = useDispatch();
     const data = state.selectedItem[id - 1];
 
     return (
@@ -42,13 +44,13 @@ const ProductStore = ({ productData }) => {
                     {
                         isItThere(state, id) ?
                             <div>
-                                <button id={style.INCREASE} onClick={() => dispatch({ type: 'INCREASE', payload: productData })} > + </button>
+                                <button id={style.INCREASE} onClick={() => dispatch( increase( productData ) )} > + </button>
 
                                 {findQuantity(state, id) > 0 && <span id={style.quantityProduct} > {findQuantity(state, id)} </span>}
 
-                                {findQuantity(state, id) === 1 && <button id={style.REMOVE_ITEM} onClick={() => dispatch({ type: 'REMOVE_ITEM', payload: productData })} > <img src={trashSVG} alt="trash" /> </button>}
+                                {findQuantity(state, id) === 1 && <button id={style.REMOVE_ITEM} onClick={() => dispatch( removeItem( productData ) )} > <img src={trashSVG} alt="trash" /> </button>}
 
-                                {findQuantity(state, id) > 1 && <button id={style.DECREASE} onClick={() => dispatch({ type: 'DECREASE', payload: productData })} > - </button>}
+                                {findQuantity(state, id) > 1 && <button id={style.DECREASE} onClick={() => dispatch( decrease( productData ) )} > - </button>}
 
                             </div> :
 
