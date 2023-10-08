@@ -1,0 +1,144 @@
+.productCart {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    width: 70vw;
+    height: 140px;
+    border-bottom: 2px solid #fff;
+    background: linear-gradient(to right, rgb(140, 161, 161), rgb(255, 255, 255));
+    transition: all .3s ease-in;
+
+    img {
+        width: 70px;
+        padding: .5rem;
+        border-radius: 20%;
+        background-color: #ffffff;
+    }
+
+    .titleCart {
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        width: 70%;
+
+        h4 {
+            color: #235660;
+            font-size: .9rem;
+        }
+
+    }
+
+    .priceCart {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 15%;
+
+        span {
+            color: rgb(7, 153, 63);
+
+            &:nth-child(2) {
+                color: #235660;
+                padding: 1px 5px;
+                background-color: rgb(50, 146, 146);
+                border-radius: 4px;
+                color: #fff;
+            }
+        }
+    }
+
+    .buttonCart {
+        padding: 0 1rem;
+        width: 20%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-left: 1px solid silver;
+        margin-left: 8px;
+        transition: all .5s ease-in-out;
+
+
+        button {
+            padding: 2px 8px;
+            border: none;
+            background-color: #32bcae;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            opacity: 0;
+            animation: Show .5s forwards;
+
+            &:nth-child(2) {
+                width: 30px;
+                height: 20px;
+                padding: 0;
+            }
+        }
+
+        img {
+            background: #32bcae;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+        }
+    }
+}
+
+@keyframes Show {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@media(max-width:768px) {
+
+    .productCart {
+        height: 80px;
+        
+        img {
+            width:50px ;
+        }
+        
+        .titleCart {
+            h4 {
+                font-size: .5rem;
+            }
+        }
+
+        .priceCart {
+            width: 50%;
+            span {
+                font-size: .45rem;
+            }
+        }
+
+        .buttonCart {
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            padding: 1px 3px;
+            width: 40%;
+            button {
+                padding: 0;
+                width: 12px;
+                height: 12px;
+                font-size: .5rem;
+
+                &:nth-child(2) {
+                    width: 12px;
+                    height: 12px;
+                }
+            }
+
+            img {
+                width: 12px;
+                height: 12px;
+            }
+        }
+    }
+
+}

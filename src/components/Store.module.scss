@@ -1,0 +1,23 @@
+.store {
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgb(142, 156, 156);
+    min-height: 100vw;   
+    animation:  Show .3s;
+    
+    h1 {
+        color: #fff;
+    }
+}
+
+@keyframes Show {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
