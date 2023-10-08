@@ -45,6 +45,7 @@ const reducerCart = (state = initialState, action) => {
             return {
                 ...state,
                 selectedItem : [ ...state.selectedItem ],
+                checkout : false,
                 ...calculatorItem( state.selectedItem )  
             }
 
@@ -53,6 +54,7 @@ const reducerCart = (state = initialState, action) => {
             return {
                 ...state,
                 selectedItem : [ ...newSelectedItem ],
+                checkout : false,
                 ...calculatorItem( newSelectedItem ),
             }
 

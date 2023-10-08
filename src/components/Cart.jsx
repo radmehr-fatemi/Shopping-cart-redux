@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector ,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 //Style
 import style from "./Cart.module.scss";
@@ -10,7 +10,7 @@ import ProductCart from './shared/ProductCart';
 
 const Cart = () => {
 
-    const state = useSelector( state => state.stateCart );
+    const state = useSelector(state => state.stateCart);
     const dispatch = useDispatch();
 
     return (
@@ -18,20 +18,27 @@ const Cart = () => {
 
             <div className={style.checkoutCart}>
                 {
-                    !state.selectedItem.length && <div className={style.checkoutCartTrue}>
+                    (state.itemCounter < 1 && !state.checkout) && <div className={style.checkoutCartTrue}>
                         <h1> You're Shopping cart is empty </h1>
                         <Link to='/store' > Go to shopping </Link>
                     </div>
-
                 }
 
                 {
-                    !state.checkout && (!!state.selectedItem.length) && <div className={style.checkoutCartFalse} >
+                    (state.itemCounter > 0 && !state.checkout) && <div className={style.checkoutCartFalse} >
                         <h1> Proceed to checkout </h1>
-                        <span> Total: { state.total.toFixed(2) } $ </span>
+                        <span> Total: {state.total.toFixed(2)} $ </span>
                         <button onClick={() => dispatch({ type: 'CHECKOUT' })} > Checkout </button>
                     </div>
                 }
+
+                {
+                    (!state.itemCounter && state.checkout) && <div className={style.checkoutCartTrue} >
+                        <h1> Payments was successful </h1>
+                        <Link to='/store' > Go to shopping </Link>
+                    </div>
+                }
+
                 <div className={style.checkoutCartByMore}>
                     <Link to='/store' > Buy more </Link>
                     <button onClick={() => dispatch({ type: 'CLEAR' })} > Clear </button>
